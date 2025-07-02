@@ -71,7 +71,7 @@ a:hover, a:focus {
 }
 .logo {
   font-size: 1.5rem;
-  font-family: 'Pacifico', cursive, 'Segoe UI', Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif; /* Changed to normal text */
   font-weight: 700;
   color: var(--primary);
   display: flex;
