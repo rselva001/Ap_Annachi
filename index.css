@@ -140,9 +140,11 @@ a:hover, a:focus {
 
 /* Container */
 .container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 2rem;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Member Spotlight/Profile Header */
@@ -739,7 +741,7 @@ footer p {
   font-family: inherit;
 }
 .member-spotlight-container {
-  max-width: 1100px;
+  max-width: 100vw;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -1061,3 +1063,21 @@ body.lang-ta .lang-en { display: none; }
 body.lang-ta .lang-ta { display: inline; }
 body.lang-en .lang-en { display: inline; }
 body.lang-en .lang-ta { display: none; }
+
+/* Improve the width of all main containers for a wider layout */
+.container,
+.profile-header,
+.profile-section,
+.card-grid,
+.featured-section,
+.youtube-container,
+.events-section,
+.member-spotlight-container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Optional: For even more width, you can use 1600px instead of 1400px */
