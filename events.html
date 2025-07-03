@@ -1,18 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.10-0/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upcoming Events | Rotary Tamirabarani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="events.css">
 </head>
 <body>
-    
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">Rotary Tamirabarani</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">About Rotary</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About Rotary</a></li>
+      <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+      <li><a href="events.html" class="active"><i class="fas fa-calendar-alt"></i> Events</a></li>
+      <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <div class="container">
+    <h1 class="events-title">Upcoming Events</h1>
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">12</span>
+          <span class="event-month">JUL</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Blood Donation Camp</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 10:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> City Hospital</span>
+          </div>
+          <p class="event-desc">Join us to save lives! Open for all, refreshments provided.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">20</span>
+          <span class="event-month">JUL</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Tree Plantation Drive</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 8:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Riverside Park</span>
+          </div>
+          <p class="event-desc">Help us make our city greener. All ages welcome!</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">28</span>
+          <span class="event-month">JUL</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Youth Leadership Seminar</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 2:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Rotary Hall</span>
+          </div>
+          <p class="event-desc">Empowering youth with leadership skills. Register now!</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">05</span>
+          <span class="event-month">AUG</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Health Awareness Workshop</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 11:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Community Center</span>
+          </div>
+          <p class="event-desc">Free health checkups and expert talks for all participants.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">15</span>
+          <span class="event-month">AUG</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Independence Day Celebration</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 9:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Club Grounds</span>
+          </div>
+          <p class="event-desc">Flag hoisting, cultural programs, and breakfast for all.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">22</span>
+          <span class="event-month">AUG</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Career Guidance Seminar</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 3:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Rotary Hall</span>
+          </div>
+          <p class="event-desc">For students and parents. Meet industry experts and counselors.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">30</span>
+          <span class="event-month">AUG</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Clean City Campaign</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 7:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Main Square</span>
+          </div>
+          <p class="event-desc">Join hands to clean our city. Gloves and bags provided.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">10</span>
+          <span class="event-month">SEP</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Senior Citizens' Day</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 5:00 PM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Old Age Home</span>
+          </div>
+          <p class="event-desc">Fun activities and dinner for our beloved elders.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">18</span>
+          <span class="event-month">SEP</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Rotary Family Picnic</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 10:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Green Meadows</span>
+          </div>
+          <p class="event-desc">A day of games, food, and fun for all Rotary families.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">18</span>
+          <span class="event-month">SEP</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Rotary Family Picnic</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 10:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Green Meadows</span>
+          </div>
+          <p class="event-desc">A day of games, food, and fun for all Rotary families.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">18</span>
+          <span class="event-month">SEP</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Rotary Family Picnic</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 10:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Green Meadows</span>
+          </div>
+          <p class="event-desc">A day of games, food, and fun for all Rotary families.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-day">18</span>
+          <span class="event-month">SEP</span>
+        </div>
+        <div class="event-info">
+          <h2 class="event-name">Rotary Family Picnic</h2>
+          <div class="event-meta">
+            <span><i class="fas fa-clock"></i> 10:00 AM</span>
+            <span><i class="fas fa-map-marker-alt"></i> Green Meadows</span>
+          </div>
+          <p class="event-desc">A day of games, food, and fun for all Rotary families.</p>
+          <a href="#" class="event-register-btn">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; Rotary Tamirabarani.</p>
+    <p>"Service Above Self"</p>
+  </footer>
+
+  <script>
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const body = document.body;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.classList.toggle('menu-open');
+      const icon = mobileMenuBtn.querySelector('i');
+      if (mobileMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    mobileMenuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      body.classList.remove('menu-open');
+      const icon = mobileMenuBtn.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    });
+
+    document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        body.classList.remove('menu-open');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
+    });
+  </script>
 </body>
 </html>
