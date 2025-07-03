@@ -156,6 +156,17 @@ Home</a></li>
             mobileMenu.classList.remove('active');
             mobileMenuOverlay.classList.remove('active');
         });
+
+        document.querySelectorAll('.gallery-card img').forEach(img => {
+          img.addEventListener('touchstart', function () {
+            img.classList.remove('pop'); // reset if needed
+            void img.offsetWidth; // trigger reflow for repeat taps
+            img.classList.add('pop');
+          });
+          img.addEventListener('animationend', function () {
+            img.classList.remove('pop');
+          });
+        });
     </script>   
     
 </body>

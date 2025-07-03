@@ -290,13 +290,42 @@ body {
     filter 0.35s cubic-bezier(.4,2,.3,1);
 }
 
-/* Improved hover effect for image */
+/* Improved hover and tap effect for image */
 .gallery-card:hover img,
-.gallery-card:focus-within img {
-    transform: scale(1.07) rotate(-2deg) translateY(-6px);
-box-shadow: 0 12px 36px 0 rgba(13,71,161,0.22), 0 4px 16px 0 rgba(0,0,0,0.13);
-  filter: brightness(1.08) saturate(1.15) contrast(1.05);
+.gallery-card:focus-within img,
+.gallery-card:active img,
+.gallery-card img:active {
+  transform: scale(1.12) rotate(-2deg) translateY(-8px);
+  box-shadow: 0 16px 40px 0 rgba(13,71,161,0.22), 0 6px 20px 0 rgba(0,0,0,0.15);
+  /* filter: brightness(1.10) saturate(1.18) contrast(1.08); */
   z-index: 1;
+  transition: 
+    transform 0.25s cubic-bezier(.4,2,.3,1),
+    box-shadow 0.25s cubic-bezier(.4,2,.3,1),
+    filter 0.25s cubic-bezier(.4,2,.3,1);
+}
+
+/* Touch effect for mobile: grow image on tap */
+.gallery-card img.img-touched {
+  transform: scale(1.12) rotate(-2deg) translateY(-8px) !important;
+  box-shadow: 0 16px 40px 0 rgba(13,71,161,0.22), 0 6px 20px 0 rgba(0,0,0,0.15) !important;
+  /* filter: brightness(1.10) saturate(1.18) contrast(1.08) !important; */
+  z-index: 1;
+  transition:
+    transform 0.25s cubic-bezier(.4,2,.3,1),
+    box-shadow 0.25s cubic-bezier(.4,2,.3,1),
+    filter 0.25s cubic-bezier(.4,2,.3,1);       
+}
+
+/* Pop animation for image tap */
+@keyframes popImage {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+.gallery-card img.pop {
+  animation: popImage 0.35s cubic-bezier(.4,2,.3,1);
 }
 
 @media (max-width: 600px) {
