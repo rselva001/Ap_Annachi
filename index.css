@@ -690,23 +690,78 @@ footer {
   margin-top: 2rem;
   color: var(--gray-bg);
   font-family: inherit;
+  width: 100vw;
+  min-height: 80px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  bottom: 0;
 }
+
 .social-links {
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 .social-links a {
   color: var(--gray-bg);
   font-size: 1.5rem;
   margin: 0 0.5rem;
   transition: color var(--transition), transform var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .social-links a:hover {
   color: #e52d27;
+  background: #fff2f2;
   transform: scale(1.15);
 }
 footer p {
   color: #e6f0fa;
   font-size: 0.95rem;
+  margin: 0.2rem 0;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+/* Sticky footer for short pages */
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.container {
+  flex: 1 0 auto;
+}
+footer {
+  flex-shrink: 0;
+}
+
+/* Responsive footer for mobile */
+@media (max-width: 700px) {
+  footer {
+    padding: 1.2rem 0 0.7rem 0;
+    font-size: 0.95rem;
+    min-height: 70px;
+  }
+  .social-links {
+    gap: 0.5rem;
+  }
+  .social-links a {
+    font-size: 1.2rem;
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
 /* Buttons */
