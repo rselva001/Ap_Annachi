@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Rotary Tamirabarani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+  <!-- Navbar: copy from index.html -->
+  <nav class="navbar">
+    <div class="navbar-container">
+
+         <a href="#" class="logo"><i class="#"></i>Rotary Tamirabarani</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- <div class="language-switcher">
+        <button id="langEn" class="lang-btn active">EN</button>
+        <button id="langTa" class="lang-btn">TA</button>
+      </div> -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Rotary</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About Rotary</a></li>
+      <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+      <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+      <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Contact Content -->
+  <div class="container">
+    <section class="profile-section">
+      <h2>Contact Us</h2>
+      <div class="contact-info">
+        <i class="fas fa-envelope"></i>
+        <span>Email: <a href="mailto:info@rotarytamirabarani.org">info@xxxxxxxxxxxxx.org</a></span>
+      </div>
+      <div class="contact-info">
+        <i class="fas fa-phone"></i>
+        <span>Phone: +91-xxxxxxxxxxx</span>
+      </div>
+      <div class="contact-info">
+        <i class="fas fa-phone"></i>
+        <span>Alternate: +91-xxxxxxxxxxxx</span>
+      </div>
+      <div class="contact-info">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+      </div>
+      <div class="contact-info">
+        <i class="fas fa-clock"></i>
+        <span>Office Hours: Mon-Fri 9:00 AM - 6:00 PM</span>
+      </div>
+      <div class="contact-info">
+        <i class="fas fa-globe"></i>
+        <span>Website: <a href="https://rotarytamirabarani.org" target="_blank">rotarytamirabarani.org</a></span>
+      </div>
+      <div class="contact-info">
+        <i class="fas fa-user"></i>
+        <span>President: Rtn. S. Kumaravel</span>
+      </div>
+      <div class="contact-info">
+        <i class="fas fa-user"></i>
+        <span>Secretary: Rtn. M. Priya</span>
+      </div>
+      <!-- Optional: Add a contact form here -->
+    </section>
+  </div>
+
+  <!-- Footer: copy from index.html -->
+  <footer>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; 2025 Rotary Tamirabarani. All rights reserved.</p>
+    <p>"zzzzzzzzzzzz"</p>
+  </footer>
+
+  <!-- JS for mobile menu (copy from index.html) -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const body = document.body;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.classList.toggle('menu-open');
+      const icon = mobileMenuBtn.querySelector('i');
+      if (mobileMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    mobileMenuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      body.classList.remove('menu-open');
+      const icon = mobileMenuBtn.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    });
+
+    document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        body.classList.remove('menu-open');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
+    });
+  </script>
+</body>
+</html>
