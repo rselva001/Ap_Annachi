@@ -315,6 +315,28 @@ body {
   animation: popImage 0.32s cubic-bezier(.4,2,.3,1);
 }
 
+/* Scroll animation for gallery cards */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gallery-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(.4,2,.3,1), transform 0.6s cubic-bezier(.4,2,.3,1);
+}
+
+.gallery-card.visible {
+  animation: fadeInUp 0.7s cubic-bezier(.4,2,.3,1) forwards;
+}
+
 @media (max-width: 600px) {
   .gallery-card img {
     height: 30rem; /* Increased height for mobile view */
