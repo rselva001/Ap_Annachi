@@ -3,18 +3,21 @@
   --primary: #0d47a1;
   --secondary: #4caf50;
   --gray-bg: #f7f9fb;
-  --gray-light: #f3f4f6;
   --gray-dark: #374151;
   --white: #fff;
   --radius: 16px;
   --radius-btn: 8px;
   --shadow: 0 4px 24px rgba(13,71,161,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
-  --shadow-hover: 0 8px 32px rgba(13,71,161,0.18), 0 2px 8px rgba(0,0,0,0.10);
   --transition: 0.25s cubic-bezier(.4,2,.3,1);
 }
 
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
 body {
-  font-family: 'Segoe UI', 'Inter', 'Arial Rounded MT Bold', Arial, sans-serif;
+  font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
   background: var(--gray-bg);
   color: var(--gray-dark);
   margin: 0;
@@ -22,11 +25,11 @@ body {
   line-height: 1.6;
   font-size: 1.05rem;
   letter-spacing: 0.01em;
-  transition: background 0.3s;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 56px;
+  transition: background 0.3s;
+  padding-top: 56px; /* Must match .navbar height */
 }
 
 @media (min-width: 700px) {
@@ -192,12 +195,13 @@ body {
 
 /* Container */
 .container {
-  max-width: 1400px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   box-sizing: border-box;
   flex: 1 0 auto;
+  /* Ensures container grows to fill space between navbar and footer */
 }
 
 /* Typography */
@@ -235,7 +239,7 @@ footer {
   margin-top: 2rem;
   color: var(--gray-bg);
   font-family: inherit;
-  width: 100vw;
+  width: 100%;
   min-height: 80px;
   flex-shrink: 0;
   box-sizing: border-box;
@@ -275,20 +279,10 @@ footer p {
 }
 
 /* Sticky footer for short pages */
-html, body {
-  height: 100%;
-  min-height: 100%;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 footer {
   flex-shrink: 0;
 }
 
-/* Responsive footer for mobile */
 @media (max-width: 700px) {
   footer {
     padding: 1.2rem 0 0.7rem 0;
@@ -303,178 +297,91 @@ footer {
     width: 2rem;
     height: 2rem;
   }
-}
-
-/* Responsive adjustment for container padding */
-@media (max-width: 700px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 }
 
-/* Event Page Specific Styles */
-.events-title {
-  text-align: center;
-  margin: 2rem 0 2.5rem 0;
-  color: var(--primary);
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+/* Center the registration form and give it a clean UI */
+.registration-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem 0;
 }
 
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.event-card {
+#registrationForm {
   background: #fff;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: 0 4px 24px rgba(13,71,161,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
-  display: flex;
-  align-items: stretch;
-  padding: 1.5rem 1.2rem;
-  gap: 1.2rem;
-  transition: box-shadow 0.25s cubic-bezier(.4,2,.3,1), transform 0.25s cubic-bezier(.4,2,.3,1);
-  min-height: 180px;
-}
-
-.event-card:hover {
-  box-shadow: 0 8px 32px rgba(13,71,161,0.18), 0 2px 8px rgba(0,0,0,0.10);
-  transform: translateY(-4px) scale(1.02);
-}
-
-.event-date {
-  background: var(--primary);
-  color: #fff;
-  border-radius: 0.8rem;
-  width: 60px;
-  min-width: 60px;
-  height: 60px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  max-width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-right: 0.8rem;
-  box-shadow: 0 2px 8px rgba(13,71,161,0.10);
+  gap: 1.3rem;
+}
+
+#registrationForm h1 {
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.event-day {
-  font-size: 1.7rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.event-month {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-top: -2px;
-}
-
-.event-info {
-  flex: 1 1 auto;
+.form-group {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
+  gap: 0.5rem;
 }
 
-.event-name {
-  font-size: 1.25rem;
-  font-weight: 700;
+.form-group label {
+  font-weight: 600;
   color: var(--primary);
-  margin: 0 0 0.5rem 0;
-  text-align: left;
+  margin-bottom: 0.2rem;
 }
 
-.event-meta {
+.form-group input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #e6f0fa;
+  border-radius: 8px;
   font-size: 1rem;
-  color: #374151;
-  margin-bottom: 0.5rem;
-  display: flex;
-  gap: 1.2rem;
-  align-items: center;
-  flex-wrap: wrap;
+  background: var(--gray-bg);
+  transition: border 0.2s;
 }
 
-.event-meta i {
-  color: var(--primary);
-  margin-right: 0.3rem;
+.form-group input:focus {
+  border: 1.5px solid var(--primary);
+  outline: none;
+  background: #fff;
 }
 
-.event-desc {
-  color: #374151;
-  font-size: 1rem;
-  margin-bottom: 0.7rem;
-  text-align: left;
-}
-
-.event-register-btn {
-  display: inline-block;
-  margin-top: 0.2rem;
+.btn, #payBtn {
   background: var(--primary);
   color: #fff;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem;
+  font-size: 1.08rem;
+  padding: 0.7rem 0;
+  border: none;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(13,71,161,0.08);
-  text-decoration: none;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
   cursor: pointer;
-  text-align: center;
+  margin-top: 0.5rem;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(13,71,161,0.08);
 }
 
-.event-register-btn:hover,
-.event-register-btn:focus {
+.btn:hover, #payBtn:hover,
+.btn:focus, #payBtn:focus {
   background: #17407c;
   box-shadow: 0 4px 16px rgba(13,71,161,0.15);
   transform: translateY(-2px) scale(1.03);
   outline: none;
-  color: white;
 }
 
-@media (max-width: 900px) {
-  .events-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .event-card {
-    flex-direction: row;
-    padding: 1.2rem 0.7rem;
-    gap: 0.7rem;
-  }
-}
-
-@media (max-width: 700px) {
-  .events-title {
-    font-size: 1.3rem;
-    margin: 1.2rem 0 1.5rem 0;
-  }
-  .events-grid {
-    gap: 1rem;
-  }
-  .event-card {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 1rem 0.7rem;
-    gap: 0.7rem;
-    min-height: unset;
-  }
-  .event-date {
-    margin: 0 auto 0.7rem auto;
-  }
-  .event-info {
-    align-items: flex-start;
-    text-align: left;
+@media (max-width: 500px) {
+  #registrationForm {
+    padding: 1.2rem 0.5rem;
+    max-width: 98vw;
   }
 }
