@@ -29,6 +29,7 @@ body {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: #e6f0fa #fff;
+  padding-top: 56px; /* Must match .navbar height */
 }
 
 html, body {
@@ -87,9 +88,14 @@ body {
   background: var(--white);
   box-shadow: var(--shadow);
   padding: 0.5rem 0;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  width: 100%;      /* Use 100% instead of 100vw */
+  z-index: 999;
+  height: 56px;     /* Mobile height */
+  min-height: 56px;
 }
 .navbar-container {
   max-width: 1200px;
@@ -516,5 +522,31 @@ footer {
     font-size: 0.95rem;
     width: 1.2rem;
     height: 1.2rem;
+  }
+}
+
+/* Navbar always visible at the top */
+.navbar {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  padding: 0.5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;      /* Use 100% instead of 100vw */
+  z-index: 999;
+  height: 56px;     /* Mobile height */
+  min-height: 56px;
+}
+
+/* If your navbar is taller on desktop, adjust with a media query */
+@media (min-width: 700px) {
+  .navbar {
+    height: 64px;
+    min-height: 64px;
+  }
+  body {
+    padding-top: 64px;
   }
 }

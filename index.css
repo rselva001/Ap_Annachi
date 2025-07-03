@@ -25,6 +25,37 @@ body {
   transition: background 0.3s;
 }
 
+/* Navbar always visible at the top */
+.navbar {
+  background: var(--white);
+  box-shadow: var(--shadow);
+  padding: 0.5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;      /* Use 100% instead of 100vw */
+  z-index: 999;
+  height: 56px;     /* Mobile height */
+  min-height: 56px;
+}
+
+/* Ensure content is not hidden behind the navbar */
+body {
+  padding-top: 56px; /* Must match .navbar height */
+}
+
+/* If your navbar is taller on desktop, adjust with a media query */
+@media (min-width: 700px) {
+  .navbar {
+    height: 64px;
+    min-height: 64px;
+  }
+  body {
+    padding-top: 64px;
+  }
+}
+
 /* Typography */
 h1, h2, h3, h4 {
   font-family: 'Segoe UI', 'Inter', 'Arial Rounded MT Bold', Arial, sans-serif;
@@ -56,9 +87,13 @@ a:hover, a:focus {
   background: var(--white);
   box-shadow: var(--shadow);
   padding: 0.5rem 0;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  height: 56px; /* or your actual navbar height */
+  min-height: 56px;
 }
 .navbar-container {
   max-width: 1200px;
@@ -1136,3 +1171,15 @@ body.lang-en .lang-ta { display: none; }
 }
 
 /* Optional: For even more width, you can use 1600px instead of 1400px */
+
+/* Add padding to body so content is not hidden behind navbar */
+body {
+  padding-top: 64px; /* Adjust this value to match your navbar height */
+}
+
+/* Responsive adjustment if your navbar height changes on mobile */
+@media (max-width: 700px) {
+  body {
+    padding-top: 56px; /* Adjust if your navbar is shorter on mobile */
+  }
+}
