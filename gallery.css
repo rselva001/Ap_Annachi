@@ -252,7 +252,7 @@ body {
 
 /* Our Impact / Featured Projects styles from home.html, mobile-friendly */
 
-/* Gallery grid styled like Featured Projects */
+/* Gallery grid layout */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -263,16 +263,61 @@ body {
 .gallery-card {
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(13,71,161,0.10);
+  box-shadow: 0 2px 12px rgba(13, 71, 161, 0.10);
   overflow: hidden;
-  transition: box-shadow 0.3s, transform 0.3s;
+  transition: 
+    transform 0.4s ease,
+    box-shadow 0.4s ease, 
+    background 0.4s ease, 
+    border 0.4s ease;
   display: flex;
   flex-direction: column;
+  border: 2px solid transparent;
+  position: relative;
+  will-change: transform;
 }
+
+/* Glowing aura */
+.gallery-card::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  /* background: radial-gradient(circle, rgba(100,181,246,0.25) 0%, transparent 70%); */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Hover state */
+.gallery-card:hover::before {
+  opacity: 1;
+}
+
 .gallery-card:hover {
-  box-shadow: 0 8px 32px rgba(13,71,161,0.18), 0 2px 8px rgba(0,0,0,0.10);
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-10px) scale(1.05) rotateZ(-0.5deg);
+  background: linear-gradient(145deg, #ffffff, #f0faff);
+  border:gray;
+  box-shadow:0px 0px  30px black;
+  z-index: 2;
+  animation: floatReset 0.6s ease forwards;
 }
+
+/* Optional: Reset float keyframe (prevents looping animation lag) */
+@keyframes floatReset {
+  0% {
+    transform: translateY(-6px) scale(1.03);
+  }
+  100% {
+    transform: translateY(-10px) scale(1.05) rotateZ(-0.5deg);
+  }
+}
+
+
 
 .gallery-card img {
   width: 100%;
@@ -303,6 +348,7 @@ body {
   z-index: auto;
   transition: none !important;
 }
+
 
 /* Only pop up animation for image tap/click */
 @keyframes popImage {
