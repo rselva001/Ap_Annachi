@@ -1,27 +1,53 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Rotary – Rotary Club of Tamiraparani</title>
-  <link rel="stylesheet" href="about.css" />
+  <title>About Rotary | Rotary Tamirabarani</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="about.css">
 </head>
 <body>
+  <!-- Navbar copied from index.html -->
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="index.html" class="logo">Rotary Tamiraparani</a>
-      <ul class="nav-links">
+      <a href="#" class="logo"><i class="#"></i>Rotary Tamirabarani</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Rotary</a></li>
+        <li><a href="about.html" class="active">About Rotary</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </nav>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-menu-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About Rotary</a></li>
+      <li><a href="project.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+      <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
+      <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
   <div class="container">
     <header class="about-header">
-      <h1>About Rotary International</h1>
+      <h1>About Us</h1>
       <h2>Service Above Self</h2>
     </header>
+
+    <!-- Add this image section -->
+    <div class="about-image-wrapper">
+      <img src="favpng_230f3217138c7d609dd76724ebf2d61c.png" alt="Rotary Club Group Photo" class="about-image">
+    </div>
 
     <section class="about-section">
       <h3>Our Mission</h3>
@@ -31,7 +57,7 @@
     <section class="about-section">
       <h3>Rotary Club of Tamiraparani</h3>
       <p>Our club is part of Rotary District XXXX and has been serving the community since YEAR. We focus on:</p>
-      <ul>
+      <ul> 
         <li>Promoting peace</li>
         <li>Fighting disease</li>
         <li>Providing clean water</li>
@@ -52,12 +78,65 @@
       <p>Meeting schedule: Every WEEKDAY at TIME</p>
       <p>Location: YOUR MEETING PLACE</p>
     </section>
+    <section class="about-section">
+      <h3>Contact Us</h3>
+      <p>If you have any questions or would like to get involved, please reach out to us at:</p>
+      <p>Email: <a href="##################">rotarytamirabarani@example.com</a></p>
   </div>
 
+  <!-- Footer copied from index.html -->
   <footer>
-    <p>&copy; 2023 Rotary Club of Tamiraparani. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>&copy; aaaaaaaaaaaaa.</p>
+    <p>"Ssssssssssss"</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const body = document.body;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.classList.toggle('menu-open');
+      const icon = mobileMenuBtn.querySelector('i');
+      if (mobileMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    mobileMenuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      body.classList.remove('menu-open');
+      const icon = mobileMenuBtn.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    });
+
+    document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        body.classList.remove('menu-open');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
+    });
+  </script>
 </body>
-</html> -->
+</html>
