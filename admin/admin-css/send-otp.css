@@ -1,0 +1,6 @@
+ body { font-family: Arial, sans-serif; background: #fff3e0; padding: 30px; }
+  form { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+  input[type=email] { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; }
+  button { background: #ef6c00; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background: #e65100; }
+  #msg { margin-top: 15px; }

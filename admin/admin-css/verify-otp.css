@@ -1,0 +1,6 @@
+body { font-family: Arial, sans-serif; background: #e1f5fe; padding: 30px; }
+  form { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+  input { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; }
+  button { background: #0288d1; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+  button:hover { background: #0277bd; }
+  #msg { margin-top: 15px; }

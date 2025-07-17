@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registrations | Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="admin-css/admin-registrationlist.css">
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://ui-avatars.com/api/?name=Rotary+Admin&background=4361ee&color=fff" alt="Admin">
+        <h2>Rotary Admin</h2>
+      </div>
+      
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="admin-dashboard.html" class="nav-link">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-registrationlist.html" class="nav-link active">
+            <i class="fas fa-users"></i>
+            <span>Registrations</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-events.html" class="nav-link">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Events</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="image_upload.html" class="nav-link">
+            <i class="fas fa-images"></i>
+            <span>Media Gallery</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="admin-video.html" class="nav-link">
+            <i class="fas fa-video"></i>
+            <span>YouTube</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </li> -->
+      </ul>
+      
+      <button class="btn btn-outline" style="width: 100%;" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="header">
+        <h1><i class="fas fa-users"></i> Event Registrations</h1>
+        <div class="user-actions">
+          <button class="btn btn-success" onclick="exportToPDF()">
+            <i class="fas fa-file-pdf"></i> Export PDF
+          </button>
+        </div>
+      </div>
+      
+      <div id="alertMsg"></div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-search"></i> Search Registrations</h3>
+        </div>
+        
+        <div class="search-container">
+          <div class="search-input">
+            <i class="fas fa-calendar"></i>
+            <input type="text" id="eventTitle" placeholder="Search by event title...">
+          </div>
+          <button class="btn btn-primary" onclick="searchByTitle()">
+            <i class="fas fa-search"></i> Search
+          </button>
+          <button class="btn btn-outline" onclick="loadAllRegistrations()">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fas fa-list"></i> All Registrations</h3>
+          <div class="user-actions">
+            <span id="totalRegistrations">Loading...</span>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <table id="registrationsTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Registrant</th>
+                <th>Phone</th>
+                <th>Event Title</th>
+                <th>Registration Date</th>
+              </tr>
+            </thead>
+            <tbody id="registrationsTableBody">
+              <tr>
+                <td colspan="5" class="empty-state">
+                  <i class="fas fa-spinner fa-spin"></i>
+                  <h3>Loading registrations...</h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+          <i class="fas fa-calendar-times"></i>
+          <h3>No Registrations Found</h3>
+          <p>There are currently no registrations in the system</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  
+  <script>
+    const API_BASE = 'http://localhost:8080/api/registrations';
+    let registrations = [];
+    let currentSearchTerm = '';
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      loadAllRegistrations();
+      setupEventListeners();
+    });
+
+    function checkAuth() {
+      const token = localStorage.getItem('jwt');
+      if (!token) {
+        window.location.href = 'login.html';
+      }
+    }
+
+    function setupEventListeners() {
+      document.getElementById('eventTitle').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          searchByTitle();
+        }
+      });
+    }
+
+    async function loadAllRegistrations() {
+      try {
+        showLoading();
+        
+        const token = localStorage.getItem('jwt');
+        const response = await fetch(API_BASE, {
+          headers: { 
+            'Authorization': `Bearer ${token}` 
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(response.status === 403 ? 
+            'Access denied. Admin privileges required.' : 
+            'Failed to load registrations');
+        }
+        
+        registrations = await response.json();
+        renderRegistrations(registrations);
+      } catch (error) {
+        showAlert(error.message, 'danger');
+        renderEmptyState(error.message);
+      }
+    }
+
+    async function searchByTitle() {
+      const title = document.getElementById('eventTitle').value.trim();
+      
+      if (!title) {
+        showAlert('Please enter an event title to search', 'danger');
+        return;
+      }
+      
+      try {
+        showLoading();
+        currentSearchTerm = title;
+        
+        const token = localStorage.getItem('jwt');
+        const response = await fetch(`${API_BASE}/search?title=${encodeURIComponent(title)}`, {
+          headers: { 
+            'Authorization': `Bearer ${token}` 
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(response.status === 403 ? 
+            'Access denied. Admin privileges required.' : 
+            'Failed to search registrations');
+        }
+        
+        const data = await response.json();
+        renderRegistrations(data);
+      } catch (error) {
+        showAlert(error.message, 'danger');
+        renderEmptyState(error.message);
+      }
+    }
+
+    function renderRegistrations(data) {
+      const tbody = document.getElementById('registrationsTableBody');
+      const emptyState = document.getElementById('emptyState');
+      
+      tbody.innerHTML = '';
+      emptyState.style.display = 'none';
+      
+      if (data.length === 0) {
+        emptyState.style.display = 'block';
+        document.getElementById('totalRegistrations').textContent = '0 registrations';
+        return;
+      }
+      
+      document.getElementById('totalRegistrations').textContent = `${data.length} registrations`;
+      
+      data.forEach(reg => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><span class="badge badge-primary">${reg.id}</span></td>
+          <td>${reg.name || 'N/A'}</td>
+          <td>${reg.phno || 'N/A'}</td>
+          <td>${reg.eventTitle || 'N/A'}</td>
+          <td>${reg.registrationDate ||'N/A'}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function showLoading() {
+      const tbody = document.getElementById('registrationsTableBody');
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" class="empty-state">
+            <i class="fas fa-spinner fa-spin"></i>
+            <h3>Loading registrations...</h3>
+          </td>
+        </tr>
+      `;
+    }
+
+    function renderEmptyState(message) {
+      const tbody = document.getElementById('registrationsTableBody');
+      tbody.innerHTML = '';
+      
+      const emptyState = document.getElementById('emptyState');
+      emptyState.querySelector('h3').textContent = message;
+      emptyState.style.display = 'block';
+    }
+
+    function showAlert(message, type) {
+      const alertDiv = document.getElementById('alertMsg');
+      alertDiv.innerHTML = `
+        <div class="alert alert-${type}">
+          <i class="fas fa-${type === 'danger' ? 'exclamation-triangle' : 'check-circle'}"></i>
+          ${message}
+        </div>
+      `;
+      
+      setTimeout(() => {
+        alertDiv.innerHTML = '';
+      }, 5000);
+    }
+
+    function formatDate(dateString) {
+      if (!dateString) return 'N/A';
+      
+      const options = { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
+    async function exportToPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      const table = document.getElementById('registrationsTable');
+      const rows = table.querySelectorAll('tbody tr');
+
+      if (rows.length === 0) {
+        showAlert('No registrations to export', 'danger');
+        return;
+      }
+
+      // Add title
+      doc.setFontSize(16);
+      doc.setTextColor(40);
+      doc.text(
+        currentSearchTerm 
+          ? `Registrations for: ${currentSearchTerm}`
+          : 'All Event Registrations', 
+        15, 
+        15
+      );
+
+      // Add date
+      doc.setFontSize(10);
+      doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 15, 22);
+
+      // Prepare data
+      const headers = [];
+      table.querySelectorAll('thead th').forEach(th => {
+        headers.push(th.textContent);
+      });
+
+      const data = [];
+      rows.forEach(row => {
+        const rowData = [];
+        row.querySelectorAll('td').forEach(td => {
+          rowData.push(td.textContent.trim());
+        });
+        data.push(rowData);
+      });
+
+      // AutoTable plugin for better PDF tables
+      doc.autoTable({
+        head: [headers],
+        body: data,
+        startY: 30,
+        theme: 'grid',
+        headStyles: {
+          fillColor: [67, 97, 238],
+          textColor: 255
+        },
+        alternateRowStyles: {
+          fillColor: [240, 240, 240]
+        },
+        margin: { top: 30 }
+      });
+
+      doc.save(
+        currentSearchTerm 
+          ? `registrations_${currentSearchTerm.replace(/\s+/g, '_')}.pdf`
+          : 'all_registrations.pdf'
+      );
+    }
+
+    function logout() {
+      localStorage.removeItem('jwt');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

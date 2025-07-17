@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+   <link rel="stylesheet" href="admin-css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required placeholder="Enter your email" />
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required placeholder="Enter your password" />
+            
+            <button type="submit">Login</button>
+        </form>
+
+        <p id="message"></p>
+
+        <p>
+            Don't have an account? <a href="register.html">Register</a><br />
+            Forgot password? <a href="reset-password.html">Reset Password</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            try {
+                const response = await fetch("http://localhost:8080/api/user/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const token = data.token;
+
+                    // Store token in localStorage with key "token"
+                    localStorage.setItem("jwt", token);
+
+                    // Add success animation before redirect
+                    document.querySelector('.login-container').style.animation = "fadeOutUp 0.5s ease-out forwards";
+                    
+                    // Wait for animation to complete before redirect
+                    setTimeout(() => {
+                        window.location.href = "http://127.0.0.1:5501/admin/admin-dashboard.html";
+                    }, 500);
+                } else {
+                    const error = await response.text();
+                    document.getElementById("message").textContent = error;
+                }
+            } catch {
+                document.getElementById("message").textContent = "Server error, try later.";
+            }
+        });
+    </script>
+</body>
+</html>

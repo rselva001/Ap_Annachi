@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Registration</title>
+    <link rel="stylesheet" href="admin-css/register.css">
+</head>
+<body>
+    <div class="register-container">
+        <h2>Admin Registration</h2>
+        
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="admin@example.com" />
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Create a strong password" />
+                <div class="password-strength">
+                    <div class="strength-meter" id="strengthMeter"></div>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" required placeholder="Re-enter your password" />
+            </div>
+            
+            <button type="submit" id="submitBtn">Register Admin</button>
+        </form>
+
+        <p id="message"></p>
+
+        <p class="login-link">Already registered? <a href="login.html">Login here</a></p>
+    </div>
+
+    <script>
+        const registerForm = document.getElementById("registerForm");
+        const messageEl = document.getElementById("message");
+        const submitBtn = document.getElementById("submitBtn");
+        const strengthMeter = document.getElementById("strengthMeter");
+
+        // Check if admin already exists on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/user/check-admin");
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.adminExists) {
+                        showMessage("Admin already registered. Please login.", "warning");
+                        registerForm.style.opacity = "0.6";
+                        submitBtn.disabled = true;
+                    }
+                }
+            } catch (error) {
+                console.error("Error checking admin status:", error);
+            }
+        });
+
+        // Password strength indicator
+        document.getElementById("password").addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            // Length check
+            if (password.length > 0) strength += 20;
+            if (password.length >= 8) strength += 20;
+            
+            // Complexity checks
+            if (/[A-Z]/.test(password)) strength += 20;
+            if (/[0-9]/.test(password)) strength += 20;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+            
+            strengthMeter.style.width = strength + '%';
+            
+            // Update color based on strength
+            if (strength < 40) {
+                strengthMeter.style.backgroundColor = 'var(--error)';
+            } else if (strength < 80) {
+                strengthMeter.style.backgroundColor = 'var(--warning)';
+            } else {
+                strengthMeter.style.backgroundColor = 'var(--success)';
+            }
+        });
+
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            
+            // Reset message
+            messageEl.className = '';
+            messageEl.textContent = '';
+            
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                showMessage("Passwords do not match.", "error");
+                return;
+            }
+            
+            // Validate password strength
+            if (password.length < 8) {
+                showMessage("Password must be at least 8 characters.", "error");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Registering...";
+
+            try {
+                const response = await fetch("http://localhost:8080/api/user/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const responseText = await response.text();
+                
+                if (response.ok) {
+                    showMessage("Registration successful! You can now login.", "success");
+                    registerForm.reset();
+                    strengthMeter.style.width = '0%';
+                } else {
+                    if (responseText.includes("Admin already registered")) {
+                        showMessage(responseText, "warning");
+                        registerForm.style.opacity = "0.6";
+                        submitBtn.disabled = true;
+                    } else {
+                        showMessage(responseText, "error");
+                    }
+                }
+            } catch (err) {
+                showMessage("Server error, please try again later.", "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Register Admin";
+            }
+        });
+
+        function showMessage(text, type) {
+            messageEl.textContent = text;
+            messageEl.className = type;
+        }
+    </script>
+</body>
+</html>

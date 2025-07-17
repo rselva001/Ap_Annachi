@@ -1,0 +1,323 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Events | Rotary Tamirabarani</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/events.css">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="logo">Rotary Tamirabarani</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Rotary</a></li>
+          <li><a href="project.html">Projects</a></li>
+          <li><a href="events.html" class="active">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="mobile-menu-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Rotary</a></li>
+        <li><a href="project.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+        <li><a href="events.html" class="active"><i class="fas fa-calendar-alt"></i> Events</a></li>
+        <li><a href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+    </div>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <!-- Bottom Navbar for Mobile View -->
+<nav class="bottom-navbar">
+  <a href="index.html" class="bottom-nav-link">
+    <i class="fas fa-home"></i>
+    <span>Home</span>
+  </a>
+  <a href="project.html" class="bottom-nav-link">
+    <i class="fas fa-project-diagram"></i>
+    <span>Projects</span>
+  </a>
+  <a href="events.html" class="bottom-nav-link">
+    <i class="fas fa-calendar-alt"></i>
+    <span>Events</span>
+  </a>
+  <a href="gallery.html" class="bottom-nav-link">
+    <i class="fas fa-images"></i>
+    <span>Gallery</span>
+  </a>
+  <a href="contact.html" class="bottom-nav-link">
+    <i class="fas fa-phone"></i>
+    <span>Contact</span>
+  </a>
+</nav>
+
+    <div class="container">
+      <h1 class="events-title">Upcoming Events</h1>
+      
+      <!-- Calendar Section -->
+      <section class="calendar-section">
+        <div class="calendar-header">
+          <h2><i class="fas fa-calendar"></i></h2>
+          <div class="calendar-nav">
+            <button class="calendar-prev"><i class="fas fa-chevron-left"></i></button>
+            <span class="calendar-month">June 2025</span>
+            <button class="calendar-next"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+        
+        <div class="calendar-grid">
+          <div class="calendar-weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          
+          <div class="calendar-days">
+            <!-- Calendar days will be populated by JavaScript -->
+            <div class="calendar-day other-month">26</div>
+            <div class="calendar-day other-month">27</div>
+            <div class="calendar-day other-month">28</div>
+            <div class="calendar-day other-month">29</div>
+            <div class="calendar-day other-month">30</div>
+            <div class="calendar-day other-month">31</div>
+            <div class="calendar-day">1</div>
+            <div class="calendar-day">2</div>
+            <div class="calendar-day">3</div>
+            <div class="calendar-day">4</div>
+            <div class="calendar-day">5</div>
+            <div class="calendar-day">6</div>
+            <div class="calendar-day">7</div>
+            <div class="calendar-day">8</div>
+            <div class="calendar-day">9</div>
+            <div class="calendar-day">10</div>
+            <div class="calendar-day">11</div>
+            <div class="calendar-day">12</div>
+            <div class="calendar-day">13</div>
+            <div class="calendar-day">14</div>
+            <div class="calendar-day">15</div>
+            <div class="calendar-day event-day">16</div>
+            <div class="calendar-day">17</div>
+            <div class="calendar-day">18</div>
+            <div class="calendar-day">19</div>
+            <div class="calendar-day">20</div>
+            <div class="calendar-day">21</div>
+            <div class="calendar-day">22</div>
+            <div class="calendar-day">23</div>
+            <div class="calendar-day selected">24</div>
+            <div class="calendar-day">25</div>
+            <div class="calendar-day">26</div>
+            <div class="calendar-day">27</div>
+            <div class="calendar-day event-day">28</div>
+            <div class="calendar-day">29</div>
+            <div class="calendar-day">30</div>
+            <div class="calendar-day other-month">1</div>
+            <div class="calendar-day other-month">2</div>
+            <div class="calendar-day other-month">3</div>
+            <div class="calendar-day other-month">4</div>
+            <div class="calendar-day other-month">5</div>
+            <div class="calendar-day other-month">6</div>
+          </div>
+        </div>
+        
+        <div class="calendar-events">
+          <h3>Events on <span class="selected-date">June 24, 2025</span></h3>
+          <div class="event-list">
+            <div class="calendar-event">
+              <div class="event-time">10:00 AM</div>
+              <div class="event-details">
+                <h4>Monthly Meeting</h4>
+                <p>Rotary Club Monthly Gathering</p>
+              </div>
+            </div>
+            <div class="calendar-event">
+              <div class="event-time">2:00 PM</div>
+              <div class="event-details">
+                <h4>Community Service</h4>
+                <p>Park Cleanup Activity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Events Grid -->
+      <!-- <div class="events-grid">
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">12</span>
+            <span class="event-month">JUL</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Blood Donation Camp</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 10:00 AM</span>
+              <span><i class="fas fa-map-marker-alt"></i> City Hospital</span>
+            </div>
+            <p class="event-desc">Join us to save lives! Open for all, refreshments provided.</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+        
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">20</span>
+            <span class="event-month">JUL</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Tree Plantation Drive</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 8:00 AM</span>
+              <span><i class="fas fa-map-marker-alt"></i> Riverside Park</span>
+            </div>
+            <p class="event-desc">Help us make our city greener. All ages welcome!</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">20</span>
+            <span class="event-month">JUL</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Tree Plantation Drive</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 8:00 AM</span>
+              <span><i class="fas fa-map-marker-alt"></i> Riverside Park</span>
+            </div>
+            <p class="event-desc">Help us make our city greener. All ages welcome!</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">20</span>
+            <span class="event-month">JUL</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Tree Plantation Drive</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 8:00 AM</span>
+              <span><i class="fas fa-map-marker-alt"></i> Riverside Park</span>
+            </div>
+            <p class="event-desc">Help us make our city greener. All ages welcome!</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+        
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">28</span>
+            <span class="event-month">JUL</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Youth Leadership Seminar</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 2:00 PM</span>
+              <span><i class="fas fa-map-marker-alt"></i> Rotary Hall</span>
+            </div>
+            <p class="event-desc">Empowering youth with leadership skills. Register now!</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+        
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">05</span>
+            <span class="event-month">AUG</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Health Awareness Workshop</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 11:00 AM</span>
+              <span><i class="fas fa-map-marker-alt"></i> Community Center</span>
+            </div>
+            <p class="event-desc">Free health checkups and expert talks for all participants.</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+        
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">15</span>
+            <span class="event-month">AUG</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Independence Day Celebration</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 9:00 AM</span>
+              <span><i class="fas fa-map-marker-alt"></i> Club Grounds</span>
+            </div>
+            <p class="event-desc">Flag hoisting, cultural programs, and breakfast for all.</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+        
+        <div class="event-card">
+          <div class="event-date">
+            <span class="event-day">22</span>
+            <span class="event-month">AUG</span>
+          </div>
+          <div class="event-info">
+            <h2 class="event-name">Career Guidance Seminar</h2>
+            <div class="event-meta">
+              <span><i class="fas fa-clock"></i> 3:00 PM</span>
+              <span><i class="fas fa-map-marker-alt"></i> Rotary Hall</span>
+            </div>
+            <p class="event-desc">For students and parents. Meet industry experts and counselors.</p>
+            <a href="eventregistration.html" class="event-register-btn">Register</a>
+          </div>
+        </div>
+      </div>
+    </div> -->
+     <!-- Events Grid -->
+    <div class="events-grid" id="eventsGrid">
+      <!-- Events will be loaded here dynamically -->
+      <div class="loading-events">
+        <span class="loading-spinner"></span> Loading events...
+      </div>
+    </div>
+  </div>
+   <div class="fixed-banner-below-navbar">
+  <div class="banner-marquee">
+    <div class="marquee-content">
+      <span>Register for Event – Join With Us!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>Register for Event – Join With Us!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>Register for Event – Join With Us!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>Register for Event – Join With Us!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>Register for Event – Join With Us!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <span>Register for Event – Join With Us!&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>&copy; Rotary Tamirabarani</p>
+      <p>"Service Above Self"</p>
+    </footer>
+
+    <script src="js/event.js"></script>
+  </body>
+  </html>
