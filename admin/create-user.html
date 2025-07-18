@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create New User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      margin: 0;
+      padding: 40px;
+    }
+    .container {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2e7d32;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #256029;
+    }
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Create New User</h2>
+  <form id="userForm">
+    <label>Email</label>
+    <input type="email" id="email" required />
+
+    <label>Password</label>
+    <input type="password" id="password" required />
+
+    <label>Role</label>
+    <select id="role" required>
+      <option value="USER">USER</option>
+      <!-- Add more roles if needed -->
+    </select>
+
+    <button type="submit">Create User</button>
+    <div class="message" id="message"></div>
+  </form>
+</div>
+
+<script>
+  document.getElementById('userForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const role = document.getElementById('role').value;
+
+    const token = localStorage.getItem('jwt'); // 🔒 Get JWT token from storage
+
+   const response = await fetch('http://localhost:8080/api/user/create', {
+
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token // include token for admin auth
+      },
+      body: JSON.stringify({ email, password, role })
+    });
+
+    const messageDiv = document.getElementById('message');
+    if (response.ok) {
+      messageDiv.textContent = "✅ User created successfully!";
+      messageDiv.style.color = 'green';
+      document.getElementById('userForm').reset();
+    } else {
+      const errorText = await response.text();
+      messageDiv.textContent = "❌ " + errorText;
+      messageDiv.style.color = 'red';
+    }
+  });
+</script>
+
+</body>
+</html>
