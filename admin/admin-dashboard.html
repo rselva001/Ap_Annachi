@@ -76,10 +76,11 @@
           <i class="fas fa-bars"></i>
         </button>
         <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
-        <div class="user-info">
-          <img src="https://ui-avatars.com/api/?name=Admin&background=4361ee&color=fff" alt="User">
-          <span>Admin</span>
-        </div>
+       <div class="user-info" id="userProfile">
+  <img id="userAvatar" src="" alt="User">
+  <span id="userRoleDisplay"></span>
+</div>
+
       </div>
       
       <!-- Stats Cards -->
@@ -226,6 +227,28 @@
     });
 
     resizeObserver.observe(document.body);
+    // Call this on page load
+function loadLoggedInUserInfo() {
+  fetch('http://localhost:8080/api/user/me', {
+    headers: {
+      'Authorization': 'Bearer ' + localStorage.getItem('jwt')
+    }
+  })
+  .then(response => response.json())
+  .then(user => {
+const role = (user.role === 'SECOND_ADMIN' || user.role === 'ADMIN') ? 'Admin' : 'User';
+
+    document.getElementById('userAvatar').src =
+      `https://ui-avatars.com/api/?name=${role}&background=4361ee&color=fff`;
+    document.getElementById('userRoleDisplay').textContent = role;
+  })
+  .catch(error => {
+    console.error("Failed to load user info:", error);
+  });
+}
+
+loadLoggedInUserInfo(); // Call it when page loads
+
   </script>
 </body>
 </html>
