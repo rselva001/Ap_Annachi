@@ -102,7 +102,7 @@
           <div class="stat-header">
             <div class="stat-title">Total Registrations</div>
             <div class="stat-icon">
-              <i class="fas fa-users"></i>
+              <i class="fas fa-users"></i>          
             </div>
           </div>
           <div class="stat-value">1,248</div>
@@ -215,18 +215,6 @@
       window.location.href = 'login.html';
     }
 
-    // Resize observer for responsive behavior
-    const resizeObserver = new ResizeObserver(entries => {
-      const sidebar = document.getElementById('sidebar');
-      
-      if (window.innerWidth > 992) {
-        sidebar.style.left = '0';
-      } else {
-        sidebar.style.left = '-280px';
-      }
-    });
-
-    resizeObserver.observe(document.body);
     // Call this on page load
 function loadLoggedInUserInfo() {
   fetch('http://localhost:8080/api/user/me', {

@@ -64,6 +64,9 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
         <h1><i class="fas fa-users"></i> Event Registrations</h1>
         <div class="user-actions">
           <button class="btn btn-success" onclick="exportToPDF()">
@@ -131,6 +134,9 @@
       </div>
     </main>
   </div>
+
+  <!-- Sidebar Overlay for Mobile -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
@@ -365,6 +371,29 @@
       localStorage.removeItem('jwt');
       window.location.href = 'login.html';
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const sidebar = document.querySelector('.sidebar');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+      if (mobileMenuBtn && sidebar && sidebarOverlay) {
+        mobileMenuBtn.addEventListener('click', () => {
+          sidebar.classList.toggle('active');
+          sidebarOverlay.classList.toggle('active');
+        });
+        sidebarOverlay.addEventListener('click', () => {
+          sidebar.classList.remove('active');
+          sidebarOverlay.classList.remove('active');
+        });
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+          });
+        });
+      }
+    });
   </script>
 </body>
 </html>
