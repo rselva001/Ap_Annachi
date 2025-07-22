@@ -1080,3 +1080,35 @@ body {
   90% { transform: translateX(1px);}
   100% { transform: translateX(0);}
 }
+.bottom-nav-link.actives{
+  color: var(--primary);
+  font-weight: 700;
+  background: #e5e4eb;
+  border-radius: 8px;
+}
+
+/* Horizontal scroll for events grid on mobile */
+/* @media (max-width: 900px) {
+  .events-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 1.2rem;
+    scroll-behavior: smooth;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  .event-card {
+    min-width: 85vw;
+    max-width: 95vw;
+    flex: 0 0 auto;
+  } */
+  /* Hide scrollbar for a cleaner look */
+  /* .events-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .events-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+} */

@@ -930,3 +930,9 @@ body {
   90% { transform: translateX(1px);}
   100% { transform: translateX(0);}
 }
+.bottom-nav-link.actives{
+  color: var(--primary);
+  font-weight: 700;
+  background: #e5e4eb;
+  border-radius: 8px;
+}

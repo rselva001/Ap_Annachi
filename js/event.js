@@ -179,6 +179,7 @@ function updateEvents() {
       <div class="event-details">
         <h4>${event.title}</h4>
         <p>${event.description}</p>
+        <a href="eventregistration.html?eventId=${event.id}" class="event-register-btn" style="margin-top:8px;display:inline-block;">Register</a>
       </div>
     `;
     eventList.appendChild(eventElement);
